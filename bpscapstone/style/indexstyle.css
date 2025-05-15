@@ -1,0 +1,814 @@
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f3f3f3;
+    scroll-behavior: smooth;   
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00439C;
+    padding: 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hiding/revealing */
+}
+
+.navbar.hide {
+    transform: translateY(-100%); /* Move navbar out of view */
+}
+
+.navbar img {
+    height: 50px;
+    margin-left: 30px;
+    image-rendering: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+    margin-right: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin: auto;
+    background: white;
+    transition: width 0.3s;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.tambahanbanner {
+    padding: 20px 20px;
+    height: 50px;
+    background-color: #00439C; 
+}
+
+/* Banner container to position relative for overlay */
+.banner-container {
+    position: relative;
+}
+
+/* Banner image styles */
+.banner-bps {
+    width: 100%; /* Banner will stretch to full width */
+    height: auto;
+    display: block;
+}
+
+/* Text inside the banner */
+.banner-text {
+    position: absolute;
+    top: 50%; /* Vertically center the text */
+    left: 50%; /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Adjust for exact center */
+    color: rgb(241, 241, 241); /* White text color for visibility */
+    font-size: 25px; /* Adjust text size */
+    text-align: left; /* Center the text */
+    line-height: 1.4; /* Adjust line height for spacing */
+    margin-left: -290px; /* Adjust for better centering */
+    margin-top: -30px; /* Adjust for better centering */
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+/* Optional: Add some margin between the paragraphs */
+.banner-text p {
+    margin: 5px 0;
+}
+
+.banner-footer {
+    width: 100%; /* Banner will stretch to full width */
+    height: auto;
+    display: block;
+}
+
+/* Profile Section */
+.profile-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    margin-top: -10px;
+}
+
+/* Profile Text Container */
+.profile-text-container {
+    background-color: white; /* White background */
+    padding: 10px 40px; /* Reduced top and bottom padding (20px), kept left and right (30px) */
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Light shadow */
+}
+
+/* Header Style */
+.profile-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 50px; /* Adjusted margin for better spacing */
+}
+
+/* Separator Line */
+.separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px 0;
+    margin-top: -10px; /* Adjusted margin for better spacing */
+}
+
+/* Paragraph and List Styling */
+.profile-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #575757;
+}
+
+.profile-section ul {
+    margin-left: 20px;
+    list-style-type: disc;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #575757;
+}
+
+.profile-section ul li {
+    margin-bottom: 10px;
+}
+
+.profile-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Saat muncul */
+.profile-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efek untuk elemen dalam profile-section */
+.profile-section p,
+.profile-section ul,
+.profile-section h2,
+.profile-section .separator {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Saat aktif */
+.profile-section.show p,
+.profile-section.show ul,
+.profile-section.show h2,
+.profile-section.show .separator {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay animasi agar muncul satu-satu */
+.profile-section.show p:nth-of-type(1) { transition-delay: 0.2s; }
+.profile-section.show p:nth-of-type(2) { transition-delay: 0.4s; }
+.profile-section.show ul:nth-of-type(1) { transition-delay: 0.6s; }
+.profile-section.show p:nth-of-type(3) { transition-delay: 0.8s; }
+.profile-section.show ul:nth-of-type(2) { transition-delay: 1s; }
+.profile-section.show h2 { transition-delay: 0s; }
+.profile-section.show .separator { transition-delay: 0.1s; }
+
+.layanan-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    margin-top: -30px;
+}
+
+.layanan-chart-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.layanan-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.layanan-section h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.layanan-section .separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px auto 30px auto;
+    
+}
+
+/* Awal semua disembunyikan */
+.layanan-section .section-header,
+.layanan-section .separator,
+.layanan-section .layanan-chart-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Kalau sudah muncul */
+.layanan-section.show .section-header {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.layanan-section.show .separator {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+    margin-top: -10px;
+}
+
+.layanan-section.show .layanan-chart-container {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Berita Section */
+.berita-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    margin-top: -50px;
+    margin-bottom: 90px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Saat muncul (efek fade in + slide up) */
+.berita-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+.separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px 0 30px 0;
+    width: 100%;
+    margin-top: -20px;
+}
+
+/* Slider Container */
+.slider-container {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 5px; /* Padding bawah untuk jarak antara slider dan konten di bawahnya */
+}
+
+/* Track (geser) */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Card */
+.card {
+    flex: 0 0 calc(20% - 20px); /* 5 berita dalam satu baris (20%) dengan margin antar card */
+    margin: 0 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    position: relative; /* Posisi relatif untuk card */
+}
+
+/* Card Image */
+.card-image {
+    padding-top: 10px; /* Padding atas untuk jarak antara gambar dan konten di bawahnya */
+    background-color: #fff;
+    
+}
+
+/* Ukuran gambar pas */
+.card-image img {
+    width: 200px;
+    height: 283px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+/* Card Text */
+.card-text {
+    padding: 15px;
+    margin-bottom: 30px; 
+    text-align: justify;/* Margin bawah untuk jarak antara teks dan tanggal */
+}
+
+.card-text h3 {
+    font-size: 12px;
+    margin: 0;
+    color: #424242;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Tanggal Wrapper untuk memastikan posisi tanggal di kiri bawah card */
+.tanggal-wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px); /* Menjamin tanggal tetap di kiri bawah */
+}
+
+/* Tanggal */
+.card-text .tanggal {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Deskripsi card */
+.card-text p {
+    margin: 0;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Popup Box */
+.popup-content {
+    background: #fff;
+    padding: 40px 90px;
+    border-radius: 8px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+    position: relative;
+    margin-bottom: -0px;
+}
+
+/* Tombol Close */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Header: Judul */
+.popup-content h3 {
+    margin-top: -290;
+    font-size: 22px;
+    text-align: justify;
+    color: #00357a;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Konten utama (gambar + teks) */
+.popup-main {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Gambar */
+.popup-main img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* Teks di samping gambar */
+.popup-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Tanggal */
+.popup-date {
+    color: gray;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Deskripsi */
+.popup-description {
+    margin-top: 5px;
+    text-align: justify;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+.see-more {
+    color: #58a9ff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 30px;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.see-more::after {
+    color: #007bff;
+    content: " ➔"; /* panah */
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(-5px);
+}
+
+.see-more:hover {
+    color: #007bff;
+    transform: translateX(-5px); /* geser ke kiri */
+}
+
+.see-more:hover::after {
+    opacity: 1;
+    transform: translateX(0); /* panah muncul */
+}
+
+
+.dokumentasi-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    margin-top: -30px;
+}
+
+.dokumentasi-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    gap: 40px; /* lebih rapat */
+    margin-top: 20px;
+}
+
+.card-dokumentasi {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-dokumentasi:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-dokumentasi-container {
+    padding: 30px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-dokumentasi-image {
+    text-align: center;
+}
+
+.card-dokumentasi-image img {
+    width: 90%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.card-dokumentasi-text {
+    margin-top: 10px;
+    padding-bottom: 90px;
+    text-align: center;
+}
+
+
+.card-dokumentasi-text p {
+    font-size: 14px;
+    color: #333;
+    margin-top: -40px;
+    line-height: 1.5;
+}
+
+/* Section Header */
+.dokumentasi-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Separator */
+.dokumentasi-section .separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px auto 30px auto;
+}
+
+/* Awal semua disembunyikan */
+.dokumentasi-section .section-header,
+.dokumentasi-section .separator,
+.dokumentasi-section .dokumentasi-cards-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Kalau sudah muncul */
+.dokumentasi-section.show .section-header {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.dokumentasi-section.show .separator {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+    margin-top: -10px;
+}
+
+.dokumentasi-section.show .dokumentasi-cards-container {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+
+
+.video-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    opacity: 0;
+    margin-top: 40px;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Pas muncul */
+.video-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.video-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.video-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.video-section .separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px 0 30px 0;
+    width: 100%;
+}
+
+.video-text-container {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.video-container {
+    background-color: white;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 40.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+
+/* Semua section awalnya sembunyi */
+.video-section,
+.berita-section,
+.layanan-section,
+.profile-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Muncul */
+.video-section.show,
+.berita-section.show,
+.layanan-section,
+.profile-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-container {
+    background-color: #00357a;
+    padding: 80px 0;
+    margin-top: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Biar kiri & kanan pisah */
+    align-items: flex-start;
+    gap: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-logo {
+    margin-left: -90px;
+    height: 30px;
+    margin-top: -50px;
+}
+
+.footer-content p {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #ffffffd4;
+    line-height: 1.6;
+    margin-left: -190px;
+}
+
+.footer-left {
+    max-width: 500px;
+}
+
+.footer-left p {
+    font-size: 16px;
+    color: #ffffffde;
+    line-height: 1.6;
+    margin-left: -50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ffffffee;
+    margin-top: -0px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right ul li {
+    font-size: 16px;
+    color: #d3d3d3d1;
+    margin-bottom: 5px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right :hover {
+    color: #ffffff;
+
+}
+
+.footer-divider {
+    border: 1px solid #ffffff93;
+    margin: 20px 0;
+}
+
+/* Teks hak cipta */
+.footer-bottom p {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #ffffffd4;
+}

@@ -1,0 +1,393 @@
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f3f3f3;
+    scroll-behavior: smooth;   
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00439C;
+    padding: 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hiding/revealing */
+}
+
+.navbar.hide {
+    transform: translateY(-100%); /* Move navbar out of view */
+}
+
+.navbar img {
+    height: 50px;
+    margin-left: 30px;
+    image-rendering: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+    margin-right: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin: auto;
+    background: white;
+    transition: width 0.3s;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ===== Bagian Utama Section ===== */
+.beritaresmi-section {
+    font-family: 'Poppins', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    color: #3e3e3e;
+    margin-top: 60px;
+}
+
+/* Section Header */
+.beritaresmi-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Garis Pemisah */
+.beritaresmi-section .separator {
+    border: 0;
+    border-top: 2px solid #00439C;
+    margin: 20px auto 30px auto;
+}
+
+/* Animasi Awal Disembunyikan */
+.beritaresmi-section .section-header,
+.beritaresmi-section .separator,
+.beritaresmi-section .beritaresmi-cards-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Kalau Sudah Muncul */
+.beritaresmi-section.show .section-header {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.beritaresmi-section.show .separator {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+    margin-top: -10px;
+}
+
+.beritaresmi-section.show .beritaresmi-cards-container {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+.beritaresmi-section .sidebar-search {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Kalau Muncul */
+.beritaresmi-section.show .sidebar-search {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s; /* Biar muncul sedikit setelah header */
+}
+
+
+
+.beritaresmi-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Sidebar Search */
+.sidebar-search {
+    width: 250px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+/* Input Search */
+/* Input Search */
+.sidebar-search input[type="text"] {
+    width: 60%; /* Awalnya kecil */
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box; 
+    transition: width 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar-search input[type="text"]:focus {
+    width: 100%; /* Melebar pas fokus */
+    border-color: #00439C;
+    box-shadow: 0 0 5px rgba(0, 67, 156, 0.3);
+}
+
+
+.sidebar-search input[type="text"]:focus {
+    border-color: #00439C;
+    box-shadow: 0 0 5px rgba(0, 67, 156, 0.3);
+}
+
+/* Tombol Search */
+.sidebar-search button {
+    width: 40%; /* Awalnya lebih pendek */
+    padding: 12px;
+    background-color: #4d719f;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease, width 0.3s ease;
+    display: block;
+    margin: 0 auto; /* Biar selalu di tengah */
+}
+
+.sidebar-search button:hover {
+    background: #007bf6;
+    width: 60%; /* Jadi lebih panjang pas hover */
+}
+
+
+
+
+/* ===== Container untuk Card Berita ===== */
+.beritaresmi-cards-container {
+    flex: 1; /* Ambil sisa ruang */
+    display: grid;
+    grid-template-columns: 1fr; /* Satu kolom */
+    gap: 20px;
+    margin-top: -20px;
+
+    /* Awal disembunyikan */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ===== Card Berita (Horizontal) ===== */
+.card {
+    width: 100%;
+    max-width: 900px;
+     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row; /* Gambar kiri, teks kanan */
+    background-color: #fff;
+    cursor: pointer; /* Pointer saat hover */
+}
+
+/* Gambar Kiri */
+.card-image {
+    flex-shrink: 0;
+}
+
+.card-image img {
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Text Kanan */
+.card-text {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+/* Judul */
+.card-text h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    /* Batas max 3 baris */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Deskripsi */
+.card-description {
+    font-size: 14px;
+    color: #777;
+    margin-top: -50px;
+    line-height: 1.5;
+    max-height: 4.5em; /* Batas panjang */
+    overflow: hidden;
+}
+
+/* Link Selengkapnya */
+.card-description a {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card-description a:hover {
+    text-decoration: underline;
+}
+
+/* Tanggal */
+.tanggal-wrapper {
+    text-align: right;
+}
+
+.tanggal {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Link Card */
+.card-link {
+    display: block; /* Supaya link membungkus seluruh card */
+}
+
+
+.footer-container {
+    background-color: #00357a;
+    padding: 80px 0;
+    margin-top: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Biar kiri & kanan pisah */
+    align-items: flex-start;
+    gap: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-logo {
+    margin-left: -90px;
+    height: 30px;
+    margin-top: -50px;
+}
+
+.footer-content p {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #ffffffd4;
+    line-height: 1.6;
+    margin-left: -190px;
+}
+
+.footer-left {
+    max-width: 500px;
+}
+
+.footer-left p {
+    font-size: 16px;
+    color: #ffffffde;
+    line-height: 1.6;
+    margin-left: -50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ffffffee;
+    margin-top: -0px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right ul li {
+    font-size: 16px;
+    color: #d3d3d3d1;
+    margin-bottom: 5px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-right :hover {
+    color: #ffffff;
+
+}
+
+.footer-divider {
+    border: 1px solid #ffffff93;
+    margin: 20px 0;
+}
+
+/* Teks hak cipta */
+.footer-bottom p {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #ffffffd4;
+}
