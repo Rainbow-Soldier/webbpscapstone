@@ -1,0 +1,546 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f3f3f3;   
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00439C;
+    padding: 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.navbar.hide {
+    transform: translateY(-100%); 
+}
+
+.navbar img {
+    height: 50px;
+    margin-left: 30px;
+    image-rendering: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+    margin-right: 50px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin: auto;
+    background: white;
+    transition: width 0.3s;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.layout-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 100px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.layout-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidebar {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  width: 180px;
+  margin-top: 120px;
+  text-align: left;
+  margin-left: -90px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.sidebar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidebar h3 {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  color: #00439C;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #3e3e3e;
+  font-size: 16px;
+  position: relative;
+  padding: 5px 10px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 10px; 
+}
+
+.sidebar ul li a:hover {
+  color: #ffffff; 
+  background-color: #00509b;
+  border-radius: 10px; 
+}
+
+.sidebar ul li a:active {
+  background-color: #1687ff;
+  border-radius: 10px;  
+}
+
+
+.sidebar ul li a.clicked {
+  background-color: #1687ff; 
+  color: #ffffff;
+  border-radius: 10px; 
+}
+
+
+.main-content {
+  flex: 1;
+}
+
+.content-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  margin-top: 47px;
+  display: none;
+}
+
+.content-section h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: -10px;
+  color: #4b4b4b;
+  font-family: "Poppins", sans-serif;
+}
+
+.content-section.show {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
+
+.content-statistik {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+
+.separator {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+.control-item label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+select {
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.select-chart {
+  width: 190px;
+}
+
+.select-chart:hover,
+.select-chart:focus {
+  width: 301px;
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.select-year {
+  width: 80px;
+}
+
+.select-year:hover,
+.select-year:focus {
+  width: 110px;
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+select:hover {
+  border-color: #999;
+}
+
+select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  color: #292929;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.download-btn:hover {
+  background-color: #07e100;
+  color: #ffffff;
+}
+
+.content-prediksi {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  box-sizing: border-box;
+}
+
+.content-prediksi.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.predict-container {
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+#predictForm label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #525252;
+}
+
+#predictForm input {
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  outline: none;
+  margin-top: 5px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+#predictForm button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  background-color: #004cb0aa;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease, padding 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+
+#predictForm button:hover {
+  background-color: #004cb0;
+  color: #f3f3f3;
+  transform: scale(1.05);
+  font-weight: 600;
+  padding-left: 30px; 
+  padding-right: 30px; 
+}
+
+.input-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+
+.input-container label {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  font-size: 16px;
+  pointer-events: none;
+  background-color: #ffffff;
+  padding: 0 5px;
+  transition: 0.3s ease;
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Saat input fokus atau ada isinya */
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  font-size: 13px;
+  color: #007BFF;
+}
+
+/* Input focus border */
+.input-container input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.content-prediksi .separator {
+  border: 0;
+  border-top: 2px solid #00439C;
+  margin: 20px auto 30px auto;
+}
+
+.result-container {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: -40px;
+  color: #484848;
+  font-family: "Poppins", sans-serif;
+}
+
+#hasil {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+#hasilSection {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s ease, opacity 0.8s ease;
+}
+
+/* Ketika aktif */
+#hasilSection.show {
+  max-height: 1000px; /* tinggi kira-kira, pastikan cukup buat kontenmu */
+  opacity: 1;
+}
+
+/* Styling untuk Separator */
+.separator {
+  border: 0;
+  border-top: 2px solid #00439C;
+  margin: 20px auto;
+}
+
+.footer-container {
+  background-color: #00357a;
+  padding: 80px 0;
+  margin-top: 50px;
+}
+
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between; /* Biar kiri & kanan pisah */
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.footer-logo {
+  margin-left: -90px;
+  height: 30px;
+  margin-top: -50px;
+}
+
+.footer-content p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #ffffffd4;
+  line-height: 1.6;
+  margin-left: -190px;
+}
+
+.footer-left {
+  max-width: 500px;
+}
+
+.footer-left p {
+  font-size: 16px;
+  color: #ffffffde;
+  line-height: 1.6;
+  margin-left: -50px;
+}
+
+.footer-right h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ffffffee;
+  margin-top: -0px;
+
+}
+
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-right ul li {
+  font-size: 16px;
+  color: #d3d3d3d1;
+  margin-bottom: 5px;
+}
+
+.footer-right :hover {
+  color: #ffffff;
+
+}
+
+.footer-divider {
+  border: 1px solid #ffffff93;
+  margin: 20px 0;
+}
+
+/* Teks hak cipta */
+.footer-bottom p {
+  text-align: center;
+  font-size: 14px;
+  color: #ffffffd4;
+}
